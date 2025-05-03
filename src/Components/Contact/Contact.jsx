@@ -1,6 +1,8 @@
-export default function Contact({name, number}){
+import css from './Contact.module.css'
+
+export default function Contact({ name, number }) {
     return (
-    <li>
+    <li className={css.contact}>
       {name}: {number}
     </li>
   );
