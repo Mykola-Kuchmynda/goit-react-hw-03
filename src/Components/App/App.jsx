@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid';
 import css from './App.module.css'
 import ContactList from '../ContactList/ContactList';
@@ -12,8 +12,14 @@ export default function App() {
     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ];
-  const [contacts, setContacts] = useState(initialContacts);
-     const [filter, setFilter] = useState('');
+  const [contacts, setContacts] = useState(() => {
+    const saved = localStorage.getItem('contacts');
+    return saved ? JSON.parse(saved) : initialContacts;
+  });
+  const [filter, setFilter] = useState('');
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 const addContact = (newContact) => {
     const contact = {
       ...newContact,
