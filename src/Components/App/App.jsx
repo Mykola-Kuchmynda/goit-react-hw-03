@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { nanoid } from 'nanoid';
-//import css from './App.module.css'
+import css from './App.module.css'
 import ContactList from '../ContactList/ContactList';
 import SearchBox from '../SearchBox/SearchBox';
 import ContactForm from '../ContactForm/ContactForm';
@@ -24,16 +24,18 @@ const addContact = (newContact) => {
   const handleFilterChange = (value) => {
     setFilter(value);
   };
-
+const deleteContact = (contactId) => {
+    setContacts((prev) => prev.filter(contact => contact.id !== contactId));
+  };
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
     return (
-        <div>
+        <div className={css.container}>
         <h1>Phonebook</h1>
         <ContactForm onAdd = {addContact} />
             <SearchBox filterValue={filter} onFilterChange={handleFilterChange}/>
-            <ContactList contacts={filteredContacts} />
+            <ContactList contacts={filteredContacts} onDelete={deleteContact} />
         </div>
     );
 }

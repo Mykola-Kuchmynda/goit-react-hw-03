@@ -1,4 +1,5 @@
 import { Formik, Form, Field } from 'formik';
+import css from './SearchBox.module.css'
 export default function SearchBox({ filterValue, onFilterChange }) {
   return (
     <Formik
@@ -8,7 +9,7 @@ export default function SearchBox({ filterValue, onFilterChange }) {
     >
       {({ values }) => (
         <Form>
-          <label>
+          <label className={css.text}>
             Find contacts by name:{' '}
             <Field
               type="text"

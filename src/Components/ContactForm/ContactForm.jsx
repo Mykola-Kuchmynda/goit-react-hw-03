@@ -23,22 +23,22 @@ export default function ContactForm({ onAdd }) {
         actions.resetForm();
       }}
     >
-      <Form>
+      <Form className={css.contactForm}>
         <div>
           <label>
             Name
-            <Field name="name" />
+            <Field name="name" className={css.name} />
             <ErrorMessage name="name" component="span" className={css.errorMessage} />
           </label>
         </div>
         <div>
           <label>
             Number
-            <Field name="number" />
+            <Field name="number" className={css.name}  />
             <ErrorMessage name="number" component="span" className={css.errorMessage}/>
           </label>
         </div>
-        <button type="submit">Add contact</button>
+        <button type="submit" >Add contact</button>
       </Form>
     </Formik>
   );
